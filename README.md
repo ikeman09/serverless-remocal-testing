@@ -8,7 +8,7 @@ This is a side project template on how to effictively test your Serverless appli
 
 1. Configure your AWS profile: `export AWS_PROFILE=<your-profile-name>`
 2. Install dependencies: `npm install`
-3. Deploy the serverless application: `npm run sls -- deploy --stage <your-ephemeral-environment-name> . Don't forget to change <your-ephemeral-environment-name>to the name of your own ephemeral environment.
+3. Deploy the serverless application: `npm run sls -- deploy --stage <your-ephemeral-environment-name>`. Don't forget to change `<your-ephemeral-environment-name>`to the name of your own ephemeral environment.
 4. Create your own `.env.<your-ephemeral-environment-name> .`
    The following are the values of your environment file
 
