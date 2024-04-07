@@ -1,0 +1,15 @@
+# package directories
+node_modules
+jspm_packages
+
+# Serverless directories
+.serverless
+
+.env
+.env*
+
+*.js
+*.js*
+
+!babel.config.js
+!jest.config.js

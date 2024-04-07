@@ -1,0 +1,44 @@
+service: serverless-remocal-testing
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: ${opt:stage, 'dev'}
+  region: ap-southeast-1
+
+package:
+  individually: true
+  exclude:
+    - package-lock.json
+    - package.json
+
+functions:
+  createBlogPost:
+    handler: src/functions/createBlogPost.handler
+    environment:
+      BLOG_POSTS_TABLE: !Ref BlogPostsTable
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:PutItem
+        Resource: !GetAtt BlogPostsTable.Arn
+    events:
+      - httpApi: "POST /blogposts"
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-iam-roles-per-function
+
+resources:
+  Resources:
+    BlogPostsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
