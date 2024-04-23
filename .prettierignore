@@ -1,0 +1,11 @@
+# Ignore everything recursively
+*
+
+# But not the .ts files
+!*.ts
+
+# Check subdirectories too
+!*/
+
+# Not include node_modules
+*/node_modules
